@@ -5,7 +5,7 @@ function majorityElement(nums: number[]): number {
 
   for(let i = 0; i < nums.length; i++) {
     numTracker[nums[i]] = numTracker[nums[i]] ? numTracker[nums[i]] + 1 : 1;
-    if (numTracker[nums[i]] >= majorityThreshhold) {
+    if (numTracker[nums[i]] > majorityThreshhold) {
       majorityElement = nums[i];
       break;
     }
