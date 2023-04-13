@@ -10,17 +10,12 @@ export class TreeNode {
 }
 
 function maxDepth(root: TreeNode | null): number {
-  const depth: number = 0;
-  return depthChecker(root, depth)
-}
+  if(!root) return 0
 
-function depthChecker(node: TreeNode | null, currentDepth: number): number {
-  if (node === null) return currentDepth;
+  const leftDepth = maxDepth(root.left)
+  const rightDepth = maxDepth(root.right)
 
-  const leftTreeDepth = depthChecker(node.left, currentDepth + 1)
-  const rightTreeDepth = depthChecker(node.right, currentDepth + 1)
-
-  return Math.max(leftTreeDepth, rightTreeDepth)
-}
+  return Math.max(leftDepth, rightDepth) + 1
+};
 
 export default maxDepth;
