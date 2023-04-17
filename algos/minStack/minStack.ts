@@ -32,13 +32,3 @@ export class MinStack {
   }
 
 }
-
-let  stack  =  new  MinStack();
-stack.push(10);
-stack.push(20);
-stack.push(5);
-console.log(stack.getMin());
-console.log(stack.top());
-stack.pop();
-console.log(stack.getMin());
-console.log(stack.top());
