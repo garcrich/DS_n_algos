@@ -11,34 +11,26 @@ export class TreeNode {
 
 function diameterOfBinaryTree(root: TreeNode | null): number {
 
-  let diameter: number = 0;
+  let maxDiameter: Record<string,number> = {
+    value: 0
+  };
 
-  const depthChecker = (node: TreeNode | null): number => {
-    if (!node) return 0;
+  depthChecker(root,maxDiameter);
 
-    const leftDepth = depthChecker(node.left)
-    const rightDepth = depthChecker(node.right)
-
-    diameter = Math.max(diameter, leftDepth + rightDepth)
-
-    return Math.max(leftDepth, rightDepth) + 1
-
-  }
-  depthChecker(root);
-
-  return diameter;
+  return maxDiameter.value;
 };
 
-const tree2 = new TreeNode(1);
-tree2.left = new TreeNode(2);
-tree2.left.left = new TreeNode(3);
-tree2.left.right = new TreeNode(4);
+function depthChecker(node: TreeNode | null, maxDiameter: Record<string,number>): number {
+  if(!node)
+    return 0
 
-tree2.right = new TreeNode(5);
-tree2.right.left = new TreeNode(6);
-tree2.right.right = new TreeNode(7);
+  const leftDepth = depthChecker(node.left, maxDiameter)
+  const rightDepth = depthChecker(node.right, maxDiameter)
 
-diameterOfBinaryTree(tree2)
+  maxDiameter.value = Math.max(maxDiameter.value, leftDepth + rightDepth)
 
+  return Math.max(leftDepth, rightDepth) + 1
+  
+}
 
 export default diameterOfBinaryTree
